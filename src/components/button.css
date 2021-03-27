@@ -1,0 +1,274 @@
+/************/
+/** mixin **/
+/************/
+/************/
+/*** Colors ***/
+/************/
+/* scheme 1  primary  in the page   https://www.pinterest.com/pin/83457399332523588/*/
+/* #f7444e */
+/* #f7f8f3 */
+/* #78bcc4 */
+/* #002c3e */
+/* scheme 1 accent */
+/* scheme 1 neutral colors */
+/* scheme 1 feedback colors */
+/* neturals */
+/* primary */
+:root {
+    /* primary */
+    --main-color: #78bcc4;
+    /* last one: Pink: e64e89 */
+    --secondary-color: #002c3e;
+    --accent-color: #f7444e;
+    /* --shades: #f7f8f3;   */
+    /* neturals */
+    --grayscale-100: #f8f9fa;
+    --grayscale-200: #e9ecef;
+    --grayscale-300: #dee2e6;
+    --grayscale-400: #ced4da;
+    --grayscale-500: #adb5bd;
+    --grayscale-600: #6c757d;
+    --grayscale-700: #495057;
+    --grayscale-800: #343a40;
+    --grayscale-900: #212529; }
+  
+  /********************/
+  /* button */
+  /********************/
+  .button {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: stretch;
+    -ms-flex-align: stretch;
+    align-items: stretch;
+    margin-bottom: 10px;
+    padding: 0 10px;
+    border-radius: 10px;
+    background: #78bcc4;
+    cursor: pointer;
+    border: none;
+    overflow: hidden; }
+    .button.text .icon-wrapper {
+      padding-right: 0;
+      padding-bottom: 2px;
+      border-right: 1px solid transparent; }
+      .button.text .icon-wrapper .icon:before {
+        color: #78bcc4; }
+      .button.text .icon-wrapper + .label {
+        padding-left: 10px; }
+    .button.text:disabled {
+      background: transparent;
+      border: 1px solid transparent; }
+      .button.text:disabled .icon-wrapper {
+        border-right: 1px solid transparent; }
+    .button.small .label {
+      height: 30px;
+      font-size: 14px; }
+    .button.medium .label {
+      height: 40px;
+      font-size: 16px; }
+    .button.large .label {
+      height: 45px;
+      font-size: 18px; }
+    .button.loading .loading-bg {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: flex-start;
+      -ms-flex-pack: flex-start;
+      justify-content: flex-start;
+      -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+      align-items: stretch;
+      background: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      /**
+            * ==============================================
+            * Dot Shuttle
+            * ==============================================
+            */ }
+      .button.loading .loading-bg .stage {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        /**
+              * ==============================================
+              * Dot Pulse
+              * ==============================================
+              */ }
+        .button.loading .loading-bg .stage .dot-pulse {
+          position: relative;
+          left: -9999px;
+          width: 10px;
+          height: 10px;
+          border-radius: 5px;
+          background: #78bcc4;
+          color: #78bcc4;
+          box-shadow: 9999px 0 0 -5px #78bcc4;
+          animation: dotPulse 1.5s infinite linear;
+          animation-delay: .25s; }
+          .button.loading .loading-bg .stage .dot-pulse:before {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background: #78bcc4;
+            color: #78bcc4;
+            box-shadow: 9984px 0 0 -5px #78bcc4;
+            margin-left: -4px;
+            animation: dotPulseBefore 1.5s infinite linear;
+            animation-delay: 0s; }
+          .button.loading .loading-bg .stage .dot-pulse:after {
+            content: '';
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background: #78bcc4;
+            color: #78bcc4;
+            box-shadow: 10014px 0 0 -5px #78bcc4;
+            margin-left: -4px;
+            animation: dotPulseAfter 1.5s infinite linear;
+            animation-delay: .5s; }
+    .button.solid .label {
+      color: #f8f9fa; }
+    .button.solid .icon-wrapper i:before {
+      color: #f8f9fa; }
+    .button.ghost {
+      border: 1px solid #78bcc4;
+      background: transparent; }
+      .button.ghost .label {
+        color: #78bcc4; }
+      .button.ghost .icon-wrapper {
+        border-right: 1px solid var(--main-color); }
+        .button.ghost .icon-wrapper i:before {
+          color: #78bcc4; }
+      .button.ghost:disabled {
+        background: transparent;
+        border: 1px solid #adb5bd; }
+        .button.ghost:disabled .icon-wrapper {
+          border-right: 1px solid #adb5bd; }
+    .button.text {
+      border: none;
+      background: transparent; }
+      .button.text .label {
+        color: #78bcc4; }
+    .button:disabled {
+      background: #dee2e6;
+      border: 1px solid #dee2e6;
+      cursor: not-allowed; }
+      .button:disabled span.label {
+        color: #adb5bd; }
+      .button:disabled .icon-wrapper {
+        border-right: 1px solid #ced4da; }
+        .button:disabled .icon-wrapper .icon:before {
+          color: #adb5bd; }
+    .button:focus {
+      outline: none; }
+    .button .icon-wrapper {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: initial;
+      -ms-flex-pack: initial;
+      justify-content: initial;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding-right: 10px;
+      border-right: 1px solid rgba(255, 255, 255, 0.3); }
+      .button .icon-wrapper i {
+        margin: 0; }
+      .button .icon-wrapper + .label {
+        padding: 0 5px 0 15px; }
+    .button .label {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: initial;
+      -ms-flex-pack: initial;
+      justify-content: initial;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding: 0 12px 0 12px;
+      -webkit-transition: box-shadow 0.2s;
+      transition: box-shadow 0.2s; }
+    .button.bottom-right {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      box-shadow: 2px 2px 6px -2px rgba(0, 0, 0, 0.4);
+      z-index: 1; }
+    .button.bottom-left {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      box-shadow: 2px 2px 6px -2px rgba(0, 0, 0, 0.4);
+      z-index: 1; }
+    .button.bottom-center {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      box-shadow: 2px 2px 6px -2px rgba(0, 0, 0, 0.4);
+      z-index: 1; }
+  
+  /********/
+  /* bouncing dots */
+  /*********/
+  /* animations - specific to button comp */
+  @keyframes dotPulseBefore {
+    0% {
+      box-shadow: 9984px 0 0 -5px #78bcc4; }
+    30% {
+      box-shadow: 9984px 0 0 2px #78bcc4; }
+    60%,
+    100% {
+      box-shadow: 9984px 0 0 -5px #78bcc4; } }
+  
+  @keyframes dotPulse {
+    0% {
+      box-shadow: 9999px 0 0 -5px #78bcc4; }
+    30% {
+      box-shadow: 9999px 0 0 2px #78bcc4; }
+    60%,
+    100% {
+      box-shadow: 9999px 0 0 -5px #78bcc4; } }
+  
+  @keyframes dotPulseAfter {
+    0% {
+      box-shadow: 10014px 0 0 -5px #78bcc4; }
+    30% {
+      box-shadow: 10014px 0 0 2px #78bcc4; }
+    60%,
+    100% {
+      box-shadow: 10014px 0 0 -5px #78bcc4; } }
+  
+  /*********/
+  /* media query */
+  /*********/
+  
