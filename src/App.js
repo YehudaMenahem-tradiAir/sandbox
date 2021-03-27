@@ -30,7 +30,6 @@ import PopupWindow from './components/PopupWindow'
 import TASnackbar from './components/TASnackbar';
 
 function App() {
-
   const dragon = useSelector(getDragonSelectedState)
   const isMatched = useSelector(getSnackbarMatchState)
   const matches = useSelector(getSnackbarMatchesState)
@@ -97,6 +96,11 @@ function App() {
     return [number, number*2, number*3]
   },[number])
 
+  //button component click
+  const chooseDragon = () =>{
+    dispatch(selectDragon(dragon === "Drogo" ? "Rhaegal" : "Drogo"))
+  }
+
   return (
     <div className="App">
       <h1> <img className={`icon i-sandbox`} alt={`sandbox`} src={SandboxIcon} width="70px"></img> My Sandbox </h1>
@@ -162,8 +166,13 @@ function App() {
 
           <div className={`section`}>
             <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>button Component</h3>
-            <div className="content closed mr-t-xl">
-              <Button /> 
+            <div className="content closed mr-t-xl center">
+              <Button 
+                action={chooseDragon} 
+                label="Btn Component" 
+                styleBtn="solid" 
+                size="medium" >
+              </Button> 
             </div>
           </div>
 

@@ -1,18 +1,72 @@
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectDragon } from './../actions';
+import React,{ useState, useEffect } from 'react';
 
-const Button = () => {
+//assets
+import './button.css'
 
-    const dragon = useSelector((state) => state.selectedDragon);
-    const dispatch = useDispatch();
+const Button = (props) => {
+
+    const { 
+        label, 
+        styleBtn, 
+        size, 
+        click,
+        loading, 
+        classes, 
+        id, 
+        rounded, 
+        shadow, 
+        disabled, 
+        children,
+        index,
+        scrollToTop,
+        position,
+        type,
+     } = props
+
+    //calling parent function
+    const clickButton = (event) => {
+        if(scrollToTop){
+            scrollTop();
+            return;
+        }
+
+        if(props.click){
+            props.click(event);
+        }
+    }
+
+    const scrollTop = () => {
+        window.scroll({ 
+            top: 0, 
+            behavior: 'smooth' 
+        });
+    }
 
     return (
-        <button className={`btn`} onClick={(()=>dispatch(selectDragon(dragon === "Drogo" ? "Rhaegal" : "Drogo")))}>
-            My Btn Comp shows the state.dragon, which is: {dragon}
+        <button 
+            key={props.key} 
+            id={id} 
+            type={type}
+            index={index} 
+            className={`button ${loading ? 'loading' : ''} ${styleBtn} ${size} ${rounded ? "rounded" : ""} ${shadow ? "shadow" : ""} ${classes}
+                        ${scrollToTop && position ? position : ""}`} 
+            onClick={(e)=>clickButton(e)} 
+            disabled={disabled}
+            >
+            {children}
+            {loading
+                ? 
+                <div className="loading-bg">
+                    <div className="stage">
+                        <div className="dot-pulse"></div>
+                    </div>
+                </div>
+                :
+                ""
+            }
+            <span className="label">{label}</span>
         </button>
-    )
-
+    );
 }
 
 export default Button;
