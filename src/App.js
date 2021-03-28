@@ -106,6 +106,13 @@ function App() {
       <h1> <img className={`icon i-sandbox`} alt={`sandbox`} src={SandboxIcon} width="70px"></img> My Sandbox </h1>
       <div className={`sandbox`}>
 
+        <div className={`section`}>
+            <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>Storybook stories</h3>
+            <div className="content closed mr-t-xl">
+              <p>Begining of the btn story on <code>npm run storybook</code></p>
+            </div>
+          </div>
+
           <div className={`section`}>
             <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>useCallback Hook</h3>
             <div className="content closed mr-t-xl">
