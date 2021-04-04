@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import produce from 'immer'
-import types from './../actions/types'
-import initialState from './initials'
+import types from '../types/types'
+import initialState from '../initials/initials'
 
 const snackbarsReducer = (state = initialState,action) =>{
 
@@ -35,6 +35,25 @@ const snackbarsReducer = (state = initialState,action) =>{
             })
             return nextState
         }
+
+        //redux-saga related
+        case types.ADD_TO_COUNTER: {
+            const nextState = produce(state, (draftState) => {
+                draftState.counter++
+                return draftState
+            })
+            return nextState
+        }
+
+        //redux-saga related
+        case types.REDUCE_FROM_COUNTER: {
+            const nextState = produce(state, (draftState) => {
+                draftState.counter--
+                return draftState
+            })
+            return nextState
+        }
+
         default:
             return state
     }

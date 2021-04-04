@@ -1,4 +1,4 @@
-import React,{ useState, useEffect } from 'react';
+import React from 'react';
 
 //assets
 import './button.css'
@@ -30,8 +30,8 @@ const Button = (props) => {
             return;
         }
 
-        if(props.click){
-            props.click(event);
+        if(click){
+            click(event);
         }
     }
 

@@ -1,11 +1,22 @@
 import React,{ useState, useRef, useCallback } from 'react'
+
+//redux
 import { useDispatch, useSelector } from 'react-redux'
-import { selectDragon, snackbarMatch, snackbarAdd } from './actions'
+import { 
+  selectDragon, 
+  snackbarMatch, 
+  snackbarAdd,
+  counterAdd,
+  counterReduce,
+  counterAddAsync
+} from './actions'
+
 import { 
   getSnackbarMatchState, 
   getSnackbarMatchesState, 
   getDragonSelectedState,
-  getSnackbarLog
+  getSnackbarLog,
+  getCounterState
  } from './selectors'
 
 //third party
@@ -42,9 +53,10 @@ function App() {
   const [ name,setName ] = useLocaleStorage('name','')
   const [playMatchSound] = useSound(IcqSound)
   const [number, setNumber] = useState(1)
+  const counter = useSelector(getCounterState)
   useLogger(number)
 
-  console.log('%cSandbox-Project', 'font-family:fantasy;font-size:25px;color:darkblue')
+  console.log('%cSandbox-Project', 'font-family:arial;font-size:25px;color:green')
 
   const snkTime = () =>{
       enqueueSnackbar(
@@ -106,7 +118,36 @@ function App() {
       <h1> <img className={`icon i-sandbox`} alt={`sandbox`} src={SandboxIcon} width="70px"></img> My Sandbox </h1>
       <div className={`sandbox`}>
 
-        <div className={`section`}>
+          <div className={`section`}>
+            <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>React-Saga middleware</h3>
+            <div className="content closed mr-t-xl">
+              <div>
+                <Button 
+                  label="Increment" 
+                  styleBtn="solid" 
+                  size="small" 
+                  classes="mr-r-sm" 
+                  click={()=>dispatch(counterAdd())}>
+                </Button>
+                <Button 
+                  label="Decrement" 
+                  styleBtn="solid" 
+                  size="small" 
+                  classes="mr-r-sm" 
+                  click={()=>dispatch(counterReduce())}>
+                </Button>
+                <Button 
+                  label="onIncrementAsync" 
+                  styleBtn="ghost" 
+                  size="small"  
+                  click={()=>dispatch(counterAddAsync())}>
+                </Button>
+              </div>
+              <div>Counter: {counter} </div>
+            </div>
+          </div>
+
+          <div className={`section`}>
             <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>Storybook stories</h3>
             <div className="content closed mr-t-xl">
               <p>Begining of the btn story on <code>npm run storybook</code></p>

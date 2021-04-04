@@ -1,24 +1,33 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux' //also add applyMiddleware if needed
+import { createStore, applyMiddleware } from 'redux'
 
 import reducers from './reducers'
+import rootSaga from './reducers/saga/saga'  
 
 //third party modules
 import { SnackbarProvider } from 'notistack'
-// import logger from 'redux-logger'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import createSagaMiddleware from 'redux-saga'
 
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
 // redux middleware
+const sagaMiddleware = createSagaMiddleware()
+
 const store = createStore(
   reducers, 
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-  // applyMiddleware(logger)
+  composeWithDevTools(
+    applyMiddleware(
+      sagaMiddleware
+    )
+  ),
 )
+
+sagaMiddleware.run(rootSaga)
 
 // redux middleware
 store.subscribe(() => {
