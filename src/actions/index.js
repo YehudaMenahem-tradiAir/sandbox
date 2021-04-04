@@ -1,6 +1,6 @@
-import types from './types'
+import types from '../types/types'
 
-//chose deagon
+//chose dragon
 export const selectDragon = payload =>{
     return {
         type: types.DRAGON_SELECT,
@@ -29,5 +29,26 @@ export const snackbarLog = payload => {
     return {
         type: types.SET_SNACK_LOG,
         payload
+    }
+}
+
+//redux-saga
+export const counterAdd = () => { 
+    return {
+        type: types.ADD_TO_COUNTER 
+    }
+}
+
+//redux-saga
+export const counterReduce = () => {
+    return {
+        type: types.REDUCE_FROM_COUNTER
+    }
+}
+
+//redux-saga
+export const counterAddAsync = () =>{
+    return {
+        type: types.ADD_TO_COUNTER_ASYNC
     }
 }

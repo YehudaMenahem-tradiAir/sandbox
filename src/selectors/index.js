@@ -21,3 +21,8 @@ export const getSnackbarLog = createSelector(
 export const getDragonSelectedState = (state) => {
     return getSnackbarsState(state).selectedDragon
 }
+
+//redux-saga
+export const getCounterState = (state) => {
+    return getSnackbarsState(state).counter
+}
