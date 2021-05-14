@@ -39,6 +39,7 @@ import Button from './components/Button'
 import Dragon from './components/Dragon'
 import PopupWindow from './components/PopupWindow'
 import TASnackbar from './components/TASnackbar';
+import TASnackbarProvider from './components/TASnackbarProvider/TASnackbarProvider';
 
 function App() {
   const dragon = useSelector(getDragonSelectedState) //redux
@@ -61,12 +62,14 @@ function App() {
     return slowFunction(numberMemo) //useMemo
   },[numberMemo])
   const counter = useSelector(getCounterState)
+  useLogger(number)
+  console.log(matches)
 
   console.log('%cSandbox-Project', 'font-family:arial;font-size:25px;color:green')
 
   const snkTime = () =>{
       enqueueSnackbar(
-          'Snack T!me',
+          `Snack T!me ${uuid()}`,
           { 
               anchorOrigin: {
                 vertical: 'bottom',
@@ -76,10 +79,10 @@ function App() {
               persist: true
           }
       )
-      dispatch(snackbarAdd({msg:"Snack T!me", id:uuid()}))
+      dispatch(snackbarAdd({msg:`Snack T!me ${uuid()}`, id:uuid()}))
       dispatch(snackbarMatch(true))
       // playAudio() from native js
-      playMatchSound() //play audio from use-sound npm library
+      //playMatchSound() //play audio from use-sound npm library
   }
 
   const openPopupWindow = () =>{
@@ -137,6 +140,20 @@ function App() {
     <div className="App">
       <h1> <img className={`icon i-sandbox`} alt={`sandbox`} src={SandboxIcon} width="70px"></img> My Sandbox </h1>
       <div className={`sandbox`}>
+
+          <div className={`section`}>
+            <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>TASnackbar Provider</h3>
+            <div className="content closed mr-t-xl">
+              <p>The Snackbars Provider</p>
+              <TASnackbarProvider 
+                snackbarsList={matches}
+                maxSnackbars={5}
+                variant={'info'}
+                position={'bottom-left'}
+              >
+              </TASnackbarProvider>
+            </div>
+          </div>
 
           <div className={`section`}>
             <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>React-Saga middleware</h3>

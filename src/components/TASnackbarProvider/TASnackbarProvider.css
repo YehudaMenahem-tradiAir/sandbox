@@ -1,0 +1,27 @@
+/*******************/
+/* Snackbar Provider */
+/*******************/
+
+.snackbar-provider{
+    position: fixed;
+}
+
+.snackbar-provider.top-right {
+	top: 20px;
+	right: 20px;
+}
+
+.snackbar-provider.top-left {
+	top: 20px;
+	left: 20px;
+}
+
+.snackbar-provider.bottom-right {
+	bottom: 20px;
+	right: 20px;
+}
+
+.snackbar-provider.bottom-left {
+	bottom: 20px;
+	left: 20px;
+}

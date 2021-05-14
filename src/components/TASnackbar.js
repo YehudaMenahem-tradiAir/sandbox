@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React,{ useEffect, useState } from 'react'
 
 //third party
 import PropTypes from 'prop-types'
@@ -8,14 +8,16 @@ import './TASnackbar.css'
 
 
 export default function TASnackbar(props) {
-    const { classes, variant, position, message, show, id } = props
+    const { classes, variant, position, message, id } = props
     const [closeAnimation, setCloseAnimation] = useState('')
+    const [show,setShow] = useState(props.show)
 
     const closeToaster = () => {
+        setCloseAnimation('close')
         // time for the closing animation to happen
         setTimeout(() => {
-            setCloseAnimation('close')
-        }, 100)
+            setShow(false)
+        }, 500)
     };
 
     const iconType = () =>{
