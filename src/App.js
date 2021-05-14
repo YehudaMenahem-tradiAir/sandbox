@@ -60,6 +60,7 @@ function App() {
   const doubleSlowFunctionVal = useMemo(() => {
     return slowFunction(numberMemo) //useMemo
   },[numberMemo])
+  const counter = useSelector(getCounterState)
 
   console.log('%cSandbox-Project', 'font-family:arial;font-size:25px;color:green')
 
