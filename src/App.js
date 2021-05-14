@@ -1,4 +1,4 @@
-import React,{ useState, useRef, useCallback } from 'react'
+import React,{ useState, useRef, useMemo, useCallback } from 'react'
 
 //redux
 import { useDispatch, useSelector } from 'react-redux'
@@ -41,20 +41,26 @@ import PopupWindow from './components/PopupWindow'
 import TASnackbar from './components/TASnackbar';
 
 function App() {
-  const dragon = useSelector(getDragonSelectedState)
-  const isMatched = useSelector(getSnackbarMatchState)
-  const matches = useSelector(getSnackbarMatchesState)
-  const snackbarLog = useSelector(getSnackbarLog)
-  const dispatch = useDispatch()
-  const [ isPopupWindow,setIsPopupWindow ] = useState(false) 
-  const { enqueueSnackbar } = useSnackbar()
-  const audioElem = useRef()
+  const dragon = useSelector(getDragonSelectedState) //redux
+  const isMatched = useSelector(getSnackbarMatchState) //redux
+  const matches = useSelector(getSnackbarMatchesState) //redux
+  const snackbarLog = useSelector(getSnackbarLog) //redux
+  const counter = useSelector(getCounterState) //redux
+  const dispatch = useDispatch() //redux
+  const [ isPopupWindow,setIsPopupWindow ] = useState(false) //portal
+  const { enqueueSnackbar } = useSnackbar() //toaster - thirdparty
+  const audioElem = useRef() 
   const btn = useRef()
-  const [ name,setName ] = useLocaleStorage('name','')
-  const [playMatchSound] = useSound(IcqSound)
-  const [number, setNumber] = useState(1)
+  const [ name,setName ] = useLocaleStorage('name','') //custom hook
+  const [playMatchSound] = useSound(IcqSound) //useSound - thirdparty
+  const [number, setNumber] = useState(1) 
+  useLogger(number) //custom hook
+  const [numberMemo, setNumberMemo] = useState(1) //useMemo
+  const [dark, setDark] = useState(true) //useMemo
+  const doubleSlowFunctionVal = useMemo(() => {
+    return slowFunction(numberMemo) //useMemo
+  },[numberMemo])
   const counter = useSelector(getCounterState)
-  useLogger(number)
 
   console.log('%cSandbox-Project', 'font-family:arial;font-size:25px;color:green')
 
@@ -113,6 +119,20 @@ function App() {
     dispatch(selectDragon(dragon === "Drogo" ? "Rhaegal" : "Drogo"))
   }
 
+
+
+  //useMemo
+  const themeStyles = {
+    backgroundColor: dark ? '#000' : '#fff',
+    color: dark ? '#fff' : '#000'
+  }
+
+  //useMemo
+  const changeTheme = () =>{
+    console.log('theme change value')
+    setDark(!dark)
+  }
+
   return (
     <div className="App">
       <h1> <img className={`icon i-sandbox`} alt={`sandbox`} src={SandboxIcon} width="70px"></img> My Sandbox </h1>
@@ -151,6 +171,16 @@ function App() {
             <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>Storybook stories</h3>
             <div className="content closed mr-t-xl">
               <p>Begining of the btn story on <code>npm run storybook</code></p>
+            </div>
+          </div>
+
+          <div className={`section`}>
+            <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>useMemo Hook</h3>
+            <div className="content closed mr-t-xl">
+              <p>Theme style && slow function</p>
+              <input type="number" value={numberMemo} onChange={(e) => setNumberMemo(e.currentTarget.value)} />
+              <button onClick={changeTheme}>Change Theme</button> 
+              <p style={themeStyles}>{doubleSlowFunctionVal}</p>
             </div>
           </div>
 
@@ -261,6 +291,13 @@ function App() {
       </div>
     </div>
   );
+}
+
+//useMemo
+const slowFunction = (value) =>{
+  console.log('slowFunction of input vield change')
+  for (let index = 0; index < 1000000000; index++){}
+  return value*2
 }
 
 export default App;
