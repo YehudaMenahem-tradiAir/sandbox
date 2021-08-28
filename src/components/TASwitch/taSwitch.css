@@ -1,0 +1,83 @@
+/*********/
+/* toggle button */
+/*********/
+
+.toggle-button {
+    display: flex;
+    justify-content: initial;
+    align-items: center;
+    cursor: pointer; 
+}
+
+.toggle-button .label {
+    margin-right: 10px;
+    order: 0; 
+}
+
+.toggle-button + .toogle-button {
+    margin-right: 10px; 
+}
+
+.toggle-button .switch {
+    display: flex;
+    justify-content: initial;
+    align-items: initial;
+    -webkit-transition: border 0.3s;
+    transition: border 0.3s;
+    position: relative;
+    min-width: 45px;
+    width: 45px;
+    height: 18px;
+    order: 1; 
+}
+
+.toggle-button .switch input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer; 
+}
+      
+.toggle-button .switch .circle {
+    background: #ced4da;
+    border-radius: 50%;
+    -webkit-transform: translate(-2px, -2px);
+    transform: translate(-2px, -2px);
+    left: 0;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    transition: transform .25s, background-color .3s; 
+}
+
+.toggle-button .switch .circle-bg {
+    width: 100%;
+    border-radius: 50%;
+    border-radius: 25px;
+    background: #e9ecef; 
+}
+
+.toggle-button.checked .switch .circle {
+    background: #78bcc4;
+    -webkit-transform: translate(25px, -2px);
+    transform: translate(25px, -2px); 
+}
+
+.toggle-button.checked .switch .circle-bg {
+    background: #e9ecef; 
+}
+
+.toggle-button.label-from-right .label {
+    margin-right: 0;
+    margin-left: 10px;
+    order: 1; 
+}
+
+.toggle-button.label-from-right .switch {
+    order: 0; 
+}
+
+/*********/
+/* media query */
+/*********/

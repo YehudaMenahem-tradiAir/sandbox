@@ -40,6 +40,7 @@ import Dragon from './components/Dragon'
 import PopupWindow from './components/PopupWindow'
 import TASnackbar from './components/TASnackbar';
 import TASnackbarProvider from './components/TASnackbarProvider/TASnackbarProvider';
+import TASwitch from './components/TASwitch/TASwitch';
 
 function App() {
   const dragon = useSelector(getDragonSelectedState) //redux
@@ -61,9 +62,7 @@ function App() {
   const doubleSlowFunctionVal = useMemo(() => {
     return slowFunction(numberMemo) //useMemo
   },[numberMemo])
-  const counter = useSelector(getCounterState)
   useLogger(number)
-  console.log(matches)
 
   console.log('%cSandbox-Project', 'font-family:arial;font-size:25px;color:green')
 
@@ -142,14 +141,29 @@ function App() {
       <div className={`sandbox`}>
 
           <div className={`section`}>
+            <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>TASwitch</h3>
+            <div className="content closed mr-t-xl">
+              <div>
+                <TASwitch
+                  label="switch"
+
+                  >
+
+                </TASwitch>
+              </div>
+            </div>
+          </div>
+
+          <div className={`section`}>
             <h3 className={`mr-b-sm`} onClick={(e) => openSectionContent(e)}>TASnackbar Provider</h3>
             <div className="content closed mr-t-xl">
               <p>The Snackbars Provider</p>
               <TASnackbarProvider 
                 snackbarsList={matches}
-                maxSnackbars={5}
+                maxSnackbars={6}
                 variant={'info'}
                 position={'bottom-left'}
+                width={'500px'}
               >
               </TASnackbarProvider>
             </div>

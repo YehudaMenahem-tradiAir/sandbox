@@ -113,7 +113,7 @@
 /* from bottom left */
 @keyframes slidein-from-left {
 	from {
-		transform: translateX(-400px);
+		transform: translateX(-600px);
 	}
 
 	to {
@@ -127,6 +127,6 @@
 	}
 
 	to {
-		transform: translateX(-400px);
+		transform: translateX(-600px);
 	}
 }
