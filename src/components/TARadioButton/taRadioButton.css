@@ -1,0 +1,95 @@
+
+
+/****************/
+/* Radio Button */
+/****************/
+.radio-button {
+    display: block;
+    cursor: pointer; }
+    .radio-button .radio {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: initial;
+      -ms-flex-pack: initial;
+      justify-content: initial;
+      -webkit-box-align: initial;
+      -ms-flex-align: initial;
+      align-items: initial; }
+      .radio-button .radio input {
+        position: absolute;
+        opacity: 0; }
+      .radio-button .radio .icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 3px; }
+        .radio-button .radio .icon #radio-circle .check {
+          overflow: hidden;
+          fill: transparent;
+          -webkit-transform: scale(0);
+          transform: scale(0);
+          transform-origin: center center;
+          transition: fill .4s, transform .3s; }
+        .radio-button .radio .icon #radio-circle .ring {
+          fill: #78bcc4; }
+    .radio-button.selected .radio input + .icon #radio-circle .check {
+      fill: #78bcc4;
+      -webkit-transform: scale(1);
+      transform: scale(1); }
+  
+  .press-buttons {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: initial;
+    -ms-flex-pack: initial;
+    justify-content: initial;
+    -webkit-box-align: initial;
+    -ms-flex-align: initial;
+    align-items: initial; }
+    .press-buttons .radio-button {
+      display: block;
+      cursor: pointer;
+      position: relative; }
+      .press-buttons .radio-button:first-child .radio {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px; }
+      .press-buttons .radio-button:last-child .radio {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px; }
+      .press-buttons .radio-button.selected .radio {
+        box-shadow: inset -2px 5px 12px rgba(0, 0, 0, 0.2); }
+      .press-buttons .radio-button .radio {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: initial;
+        -ms-flex-pack: initial;
+        justify-content: initial;
+        -webkit-box-align: initial;
+        -ms-flex-align: initial;
+        align-items: initial;
+        padding: 20px;
+        background: #f7444e;
+        -webkit-transition: box-shadow 0.1s ease-in;
+        transition: box-shadow 0.1s ease-in; }
+        .press-buttons .radio-button .radio input {
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          left: 0; }
+          .press-buttons .radio-button .radio input[checked] + .icon {
+            display: none; }
+            .press-buttons .radio-button .radio input[checked] + .icon #radio-circle .check {
+              fill: #78bcc4;
+              -webkit-transform: scale(1);
+              transform: scale(1); }
+        .press-buttons .radio-button .radio .icon {
+          display: none; }
+        .press-buttons .radio-button .radio .label {
+          color: #f8f9fa; }
+  
+  /*********/
+  /* media query */
+  /*********/
+  
